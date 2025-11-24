@@ -212,7 +212,7 @@ async function detail(inReq, _outResp) {
 async function play(inReq, _outResp) {
     const id = inReq.body.id; 
 
-    const parseApi =  "https://lanmeio.com/guanfang/zkk.php?key=HX8fK2zQ9wP3sY7dE1rT5gB4vC6nM8jL&url=";
+    const parseApi =  "https://api.suxun.site/api/gjth?url=";
                       "http://154.44.26.80:88?id=qq&url=";
     const targetUrl = parseApi + encodeURIComponent(id);
 
