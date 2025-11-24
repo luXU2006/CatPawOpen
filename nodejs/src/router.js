@@ -9,10 +9,11 @@ import tgsou from "./spider/video/tgsou.js";
 import tgchannel from "./spider/video/tgchannel.js";
 import douban from "./spider/video/douban.js";
 import iqiyi from "./spider/video/iqiyi.js";
+import jieyingshi from "./spider/video/jieyingshi.js";
 import push from "./spider/video/push.js";
 import {getCache} from "./website/sites.js";
 
-const spiders = [douban, duoduo, iqiyi, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, baseset, push];
+const spiders = [douban, duoduo, iqiyi, jieyingshi, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, baseset, push];
 const spiderPrefix = '/spider';
 
 /**
