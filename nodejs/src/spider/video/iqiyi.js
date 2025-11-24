@@ -212,8 +212,8 @@ async function detail(inReq, _outResp) {
 async function play(inReq, _outResp) {
     const id = inReq.body.id; 
 
-    const parseApi =  "https://api.huohua.live/api/?key=v8GHObhk1dzFZ23Lom&url=";
-                      "http://154.44.26.80:88?id=qq&url=";
+    const parseApi =  "http://nm.4688888.xyz/nm_free.php?url=";
+                      "http://154.44.26.80:88?id=tg&url=";
     const targetUrl = parseApi + encodeURIComponent(id);
 
     try {
