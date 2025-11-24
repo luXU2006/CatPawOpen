@@ -17,6 +17,7 @@ jobs:
       working-directory: nodejs
       run: |
         npm i
+        npm install lodash
         npm run build
         
     - name: Archive dist
