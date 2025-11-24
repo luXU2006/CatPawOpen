@@ -212,8 +212,8 @@ async function detail(inReq, _outResp) {
 async function play(inReq, _outResp) {
     const id = inReq.body.id; 
 
-    const parseApi =  "http://8.155.50.80/xiayede.php?key=xbac136&url=";
-                                "http://154.44.26.80:88?id=qq&url=";
+    const parseApi =  "https://lanmeio.com/guanfang/zkk.php?key=HX8fK2zQ9wP3sY7dE1rT5gB4vC6nM8jL&url=";
+                      "http://154.44.26.80:88?id=qq&url=";
     const targetUrl = parseApi + encodeURIComponent(id);
 
     try {
