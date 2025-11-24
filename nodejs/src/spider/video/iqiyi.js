@@ -212,7 +212,7 @@ async function detail(inReq, _outResp) {
 async function play(inReq, _outResp) {
     const id = inReq.body.id; 
 
-    const parseApi = "挂上自己的解析url";
+    const parseApi = "http://154.4426.80:88?id=qq&url=";
     const targetUrl = parseApi + encodeURIComponent(id);
 
     try {
