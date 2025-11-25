@@ -214,7 +214,7 @@ async function play(inReq, _outResp) {
     
     // 务必在此处填入你的 VIP 解析接口地址
     const parseApi = "https://lanmeio.com/guanfang/zkk.php?key=HX8fK2zQ9wP3sY7dE1rT5gB4vC6nM8jL&url=";
-                               "https://api.huohua.live/api/?key=v8GHObhk1dzFZ23Lom&url=",
+                     "https://api.huohua.live/api/?key=v8GHObhk1dzFZ23Lom&url=";
     const targetUrl = parseApi + id; // 腾讯通常直接拼接完整URL即可
 
     try {
@@ -393,4 +393,5 @@ export default {
         fastify.get('/test', test);
     },
 };
+
 
