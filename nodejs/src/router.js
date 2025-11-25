@@ -12,10 +12,12 @@ import iqiyi from "./spider/video/iqiyi.js";
 import jieyingshi from "./spider/video/jieyingshi.js";
 import symx from "./spider/video/symx.js";
 import jianpian from "./spider/video/jianpian.js";
+import qq from "./spider/video/qq.js";
+import syjc from "./spider/video/syjc.js";
 import push from "./spider/video/push.js";
 import {getCache} from "./website/sites.js";
 
-const spiders = [douban, duoduo, iqiyi, jieyingshi, symx, jianpian, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, baseset, push];
+const spiders = [douban, duoduo, iqiyi, jieyingshi, symx, jianpian, qq, syjc, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, baseset, push];
 const spiderPrefix = '/spider';
 
 /**
