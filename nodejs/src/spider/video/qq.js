@@ -213,7 +213,7 @@ async function play(inReq, _outResp) {
     const id = inReq.body.id; 
     
     // 务必在此处填入你的 VIP 解析接口地址
-    const parseApi = "https://api.huohua.live/api/?key=v8GHObhk1dzFZ23Lom&url="；
+    const parseApi = "https://api.huohua.live/api/?key=v8GHObhk1dzFZ23Lom&url=";
     const targetUrl = parseApi + id; // 腾讯通常直接拼接完整URL即可
 
     try {
@@ -392,4 +392,5 @@ export default {
         fastify.get('/test', test);
     },
 };
+
 
