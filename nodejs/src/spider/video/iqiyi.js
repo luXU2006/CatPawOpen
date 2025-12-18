@@ -213,7 +213,7 @@ async function play(inReq, _outResp) {
     const id = inReq.body.id; 
 
     const parseApi = "http://nm.4688888.xyz/nm_free.php?url= ";
-                const parseApi = "http://154.44.26.80:88?id=qq&url=";
+                const parseApi2 = "http://154.44.26.80:88?id=qq&url=";
     const targetUrl = parseApi + encodeURIComponent(id);
 
     try {
