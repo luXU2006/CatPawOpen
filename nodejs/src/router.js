@@ -8,6 +8,21 @@ import zhizhen from "./spider/video/zhizhen.js";
 import tgsou from "./spider/video/tgsou.js";
 import tgchannel from "./spider/video/tgchannel.js";
 import douban from "./spider/video/douban.js";
+import iqiyi from "./spider/video/iqiyi.js";
+import bili from "./spider/video/bili.js";
+import fenmei_live from "./spider/video/fenmei_live.js";
+import jianpian from "./spider/video/jianpian.js";
+import jieyingshi from "./spider/video/jieyingshi.js";
+import jishiyu from "./spider/video/jishiyu.js";
+import panso from "./spider/video/panso.js";
+import qq from "./spider/video/qq.js";
+import syjc from "./spider/video/syjc.js";
+import symx from "./spider/video/symx.js";
+import xchina001 from "./spider/video/xchina001.js";
+import xhamster from "./spider/video/xhamster.js";
+import hsck from "./spider/video/hsck.js";
+import cgzx from "./spider/video/cgzx.js";
+import fanxi from "./spider/video/fanxi.js";
 import push from "./spider/video/push.js";
 import {getCache} from "./website/sites.js";
 import {getCache as getDanmuSetting} from "./website/danmu.js";
@@ -17,7 +32,7 @@ import {getCache as getT4} from "./website/t4.js";
 import T4Factory from "./spider/video/t4.js";
 
 const getSpiders = async (server) => {
-    const spiders = [douban, duoduo, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, baseset, push];
+    const spiders = [douban, duoduo, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, qq, iqiyi, bili, fenmei_live, jianpian, jieyingshi, jishiyu, panso, hsck, fanxi, cgzx, syjc, symx, xchina001, xhamster,   baseset, push];
     const t4Data = await getT4(server)
     t4Data.forEach(item => {
         spiders.push(T4Factory(item.name, item.address))
