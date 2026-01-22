@@ -14,7 +14,7 @@ import guazi from "./spider/video/guazi.js";
 import ylys from "./spider/video/ylys.js";
 import mqtv from "./spider/video/mqtv.js";
 import webdav from "./spider/video/webdav.js";
-import bilibili_music from "./spider/video/bilibili_music.js";
+import bilibili_music from "./spider/book/bilibili_music.js";
 import fenmei_live from "./spider/video/fenmei_live.js";
 import jianpian from "./spider/video/jianpian.js";
 import jieyingshi from "./spider/video/jieyingshi.js";
