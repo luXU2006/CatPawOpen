@@ -10,6 +10,11 @@ import tgchannel from "./spider/video/tgchannel.js";
 import douban from "./spider/video/douban.js";
 import iqiyi from "./spider/video/iqiyi.js";
 import bili from "./spider/video/bili.js";
+import guazi from "./spider/video/guazi.js";
+import ylys from "./spider/video/ylys.js";
+import mqtv from "./spider/video/mqtv.js";
+import webdav from "./spider/video/webdav.js";
+import bilibili_music from "./spider/video/bilibili_music.js";
 import fenmei_live from "./spider/video/fenmei_live.js";
 import jianpian from "./spider/video/jianpian.js";
 import jieyingshi from "./spider/video/jieyingshi.js";
@@ -34,7 +39,7 @@ import {getCache as getCMS} from "./website/cms.js";
 import CMSFactory from "./spider/video/cms.js";
 
 const getSpiders = async (server) => {
-    const spiders = [douban, duoduo, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, qq, iqiyi, bili, fenmei_live, jianpian, jieyingshi, jishiyu, panso, hsck, fanxi, cgzx, syjc, symx, xchina001, xhamster,   baseset, push];
+    const spiders = [douban, duoduo, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, qq, iqiyi, bili, guazi, ylys, mqtv, webdav, bilibili_music, fenmei_live, jianpian, jieyingshi, jishiyu, panso, hsck, fanxi, cgzx, syjc, symx, xchina001, xhamster,   baseset, push];
     const t4Data = await getT4(server)
     t4Data.forEach(item => {
         spiders.push(T4Factory(item.name, item.address))
