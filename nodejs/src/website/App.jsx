@@ -648,6 +648,7 @@ function Sites() {
             <>
               {record.name}
               {record.t4 && <Tag style={{marginLeft: 4}} color="blue">T4</Tag>}
+              {record.cms && <Tag style={{marginLeft: 4}} color="blue">CMS</Tag>}
             </>
           )
         }
@@ -744,6 +745,7 @@ function Sites() {
           name: site.name,
           enable: true,
           t4: site.t4,
+          cms: site.cms,
         })
       }
     })
@@ -1200,6 +1202,106 @@ function T4() {
   )
 }
 
+function CMS() {
+  const api = '/cms/list'
+  const [url, setUrl] = useState('')
+  const [data, setData] = useState([])
+  const [getDataLoading, setGetDataLoading] = useState(false)
+  const columns = [
+    {
+      title: '名称',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'API',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ]
+
+  const init = async () => {
+    const list = await http.get(api)
+    setData(list)
+  }
+
+  const getData = async () => {
+    if (!url) {
+      message.error("请输入CMS接口地址")
+      return
+    }
+    setGetDataLoading(true)
+    try {
+      const {data} = await axios.get(url.trim())
+      if (data.sites.length) {
+        setData(
+          data.sites.map(item => {
+            return {
+              name: item.name,
+              address: item.api,
+            }
+          })
+        )
+      }
+    } catch (e) {
+      console.error(e)
+      message.error("接口解析失败")
+    }
+    setGetDataLoading(false)
+  }
+
+  const save = async () => {
+    try {
+      await http.put(api, data)
+      message.success({
+        content: (
+          <>
+            保存成功<br/>
+            需重新加载源！<br/>
+            需重新加载源！<br/>
+            需重新加载源！<br/>
+          </>
+        ),
+        duration: 5
+      })
+    } catch (e) {
+      console.error(e)
+      message.error(`保存失败：${e?.message}`)
+    }
+  }
+
+  const reset = async () => {
+    try {
+      await http.delete(api)
+      init()
+      message.success('清空成功')
+    } catch (e) {
+      console.error(e);
+      message.error(`清空失败：${e?.message}`)
+    }
+  }
+
+  useEffect(() => {
+    init()
+  }, [])
+
+  return (
+    <Form>
+      <Space.Compact style={{ width: '100%', marginBottom: 12 }}>
+        <Input defaultValue="输入XPTV CMS接口地址" value={url} onChange={(e) => setUrl(e.target.value)} />
+        <Button type="primary" onClick={getData} loading={getDataLoading}>识别</Button>
+      </Space.Compact>
+      <Table columns={columns} dataSource={data} pagination={false}/>
+      <Form.Item label={null} style={{marginTop: 16}}>
+        <Button type="primary" onClick={save}>
+          保存
+        </Button>
+        <Button danger style={{marginLeft: 16}} onClick={reset}>清空</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
 function App() {
   const props = {
     accept: ".json",
@@ -1263,6 +1365,12 @@ function App() {
                   cacheUrl="/115/cookie"
                 />
               </TabPane>
+              <TabPane tab="百度" key="baidu">
+                <QrcodeCard
+                  qrcodeUrl="/website/baidu/qrcode"
+                  cacheUrl="/baidu/cookie"
+                />
+              </TabPane>
               <TabPane tab="阿里" key="ali">
                 <AliQrcodeCard />
               </TabPane>
@@ -1281,6 +1389,9 @@ function App() {
               </TabPane>
               <TabPane tab="T4接口" key="t4">
                 <T4/>
+              </TabPane>
+              <TabPane tab="XPTV-CMS接口" key="cms">
+                <CMS/>
               </TabPane>
               <TabPane tab="木偶域名" key="muou">
                 <SiteDomainSetting api={'/muou/urls'} name="木偶"/>

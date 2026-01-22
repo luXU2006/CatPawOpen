@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default function T4Factory(name, address) {
+export default function CMSFactory(name, address) {
   const api = axios.create({
     baseURL: address
   })
@@ -13,7 +13,7 @@ export default function T4Factory(name, address) {
     try {
       const {data} = await api.get('', {
         params: {
-          filter: true,
+          ac: 'class'
         }
       })
       return data
@@ -55,21 +55,8 @@ export default function T4Factory(name, address) {
   }
 
   async function play(req) {
-    try {
-      const {data} = await api.get('', {
-        params: {
-          play: req.body.id,
-          flag: req.body.flag,
-        }
-      })
-      if (!data.url && !data.urls && req.body.id.startsWith('http')) {
-        return {
-          url: req.body.id
-        }
-      }
-      return data
-    } catch (e) {
-      console.warn(e)
+    return {
+      url: req.body.id
     }
   }
 
@@ -92,7 +79,7 @@ export default function T4Factory(name, address) {
       key: name,
       name,
       type: 3,
-      t4: true,
+      cms: true,
     },
     api: async (fastify) => {
       fastify.post('/init', init);

@@ -30,12 +30,18 @@ import axios from "axios";
 import { extractTitle, findEpisodeNumber } from './util/danmu-utils.js';
 import {getCache as getT4} from "./website/t4.js";
 import T4Factory from "./spider/video/t4.js";
+import {getCache as getCMS} from "./website/cms.js";
+import CMSFactory from "./spider/video/cms.js";
 
 const getSpiders = async (server) => {
     const spiders = [douban, duoduo, mogg, leijing, panta, wogg, zhizhen, tgchannel, tgsou, qq, iqiyi, bili, fenmei_live, jianpian, jieyingshi, jishiyu, panso, hsck, fanxi, cgzx, syjc, symx, xchina001, xhamster,   baseset, push];
     const t4Data = await getT4(server)
     t4Data.forEach(item => {
         spiders.push(T4Factory(item.name, item.address))
+    })
+    const cmsData = await getCMS(server)
+    cmsData.forEach(item => {
+        spiders.push(CMSFactory(item.name, item.address))
     })
     return spiders
 }
@@ -49,9 +55,9 @@ let danmuInfo = {};
  * @param {Object} fastify - The Fastify instance
  * @return {Promise<void>} - A Promise that resolves when the router is initialized
  */
-export default async function router(fastify, {db, config}) {
+export default async function router(fastify, {db, config: serverConfig}) {
     // register all spider router
-    const spiders = await getSpiders({db, config});
+    const spiders = await getSpiders({db, config: serverConfig});
     spiders.forEach((spider) => {
         const path = spiderPrefix + '/' + spider.meta.key + '/' + spider.meta.type;
         fastify.register(spider.api, { prefix: path });
@@ -97,7 +103,7 @@ export default async function router(fastify, {db, config}) {
                     },
                     color: fastify.config.color || [],
                 };
-                const spiders = await getSpiders({db, config});
+                const spiders = await getSpiders({db, config: serverConfig});
                 spiders.forEach((spider) => {
                     let meta = Object.assign({}, spider.meta);
                     meta.api = spiderPrefix + '/' + meta.key + '/' + meta.type;

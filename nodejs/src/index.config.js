@@ -14,6 +14,9 @@ export default {
     y115: {
         cookie: ''
     },
+    baidu: {
+        cookie: ''
+    },
     muou: {
         url: '',
     },
@@ -41,6 +44,9 @@ export default {
         autoPush: true
     },
     t4: {
+        list: [],
+    },
+    cms: {
         list: [],
     },
     alist: [

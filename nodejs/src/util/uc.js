@@ -5,6 +5,7 @@ import { findBestLCS, delay} from './misc.js';
 import axios from "axios";
 import {videosHandle} from "./utils.js";
 import {isUcLink} from "./linkDetect.js";
+import {getUtCache, setUtCache} from "../website/uc.js";
 
 export const Addition = {
     DeviceID: '07b48aaba8a739356ab8107b5e230ad4',
@@ -64,6 +65,7 @@ export let utDbKey = '';
 const shareTokenCache = {};
 const saveDirName = 'CatVodOpen';
 let saveDirId = null;
+let ut = ''
 
 export async function initUC(inReq) {
     localDb = inReq.server.db;
@@ -75,6 +77,17 @@ export async function initUC(inReq) {
     const localCfg = await localDb.getObjectDefault(`/uc`, {});
     if (localCfg[ckey]) {
         cookie = localCfg[ckey];
+    }
+    ut = await getUtCache(inReq.server)
+    if (!ut) {
+        try {
+            await req.get(`${apiUrl}/file`)
+        } catch (e) {
+            if (e?.response?.data?.length) {
+                ut = e.response.data
+                setUtCache(inReq.server, ut)
+            }
+        }
     }
 }
 
@@ -442,6 +455,7 @@ export async function proxy(inReq, outResp) {
                 },
                 baseHeader,
             ),
+          { chunkSize: 1024 * 150, poolSize: 14, timeout: 1000 * 10 }
         );
     }
 }

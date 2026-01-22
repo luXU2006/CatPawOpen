@@ -38,6 +38,9 @@ var index_config_default = {
   y115: {
     cookie: ""
   },
+  baidu: {
+    cookie: ""
+  },
   muou: {
     url: ""
   },
@@ -65,6 +68,9 @@ var index_config_default = {
     autoPush: true
   },
   t4: {
+    list: []
+  },
+  cms: {
     list: []
   },
   alist: [
